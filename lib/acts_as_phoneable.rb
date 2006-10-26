@@ -13,7 +13,7 @@ module PluginAWeek #:nodoc:
             :foreign_key_name => :phoneable
           }
           default_options = {
-            :default_count => :one
+            :count => :one
           }
           create_acts_association(:phone_number, create_options, default_options, *args, &extension)
           
