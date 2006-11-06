@@ -1,3 +1,5 @@
+require 'acts_association_helper'
+
 module PluginAWeek #:nodoc:
   module Acts #:nodoc:
     module Phoneable #:nodoc:
@@ -29,4 +31,8 @@ module PluginAWeek #:nodoc:
       end
     end
   end
+end
+
+ActiveRecord::Base.class_eval do
+  include PluginAWeek::Acts::Phoneable
 end
