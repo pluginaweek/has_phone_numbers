@@ -15,6 +15,6 @@ class CreatePhoneNumbers < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table_if_exists :phone_numbers
+    drop_table :phone_numbers
   end
 end
