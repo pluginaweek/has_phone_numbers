@@ -9,15 +9,12 @@ module PluginAWeek #:nodoc:
       
       module MacroMethods
         # 
-        #
         def acts_as_phoneable(*args, &extension)
-          create_options = {
-            :foreign_key_name => :phoneable
-          }
-          default_options = {
+          options = {
+            :as => :phoneable,
             :count => :one
           }
-          create_acts_association(:phone_number, create_options, default_options, *args, &extension)
+          create_acts_association(:phone_number, options, *args, &extension)
           
           extend PluginAWeek::Acts::Phoneable::ClassMethods
           include PluginAWeek::Acts::Phoneable::InstanceMethods
