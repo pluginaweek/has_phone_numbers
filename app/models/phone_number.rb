@@ -4,7 +4,7 @@ class PhoneNumber < ActiveRecord::Base
                               :polymorphic => true
                               
   validates_presence_of     :phoneable_id,
-                            :phoneable_type
+                            :phoneable_type,
                             :country_code,
                             :area_code,
                             :local_exchange
