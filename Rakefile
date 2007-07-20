@@ -3,7 +3,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
 
-PKG_NAME           = 'acts_as_phoneable'
+PKG_NAME           = 'has_phone_numbers'
 PKG_VERSION        = '0.0.1'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'pluginaweek'
@@ -11,17 +11,17 @@ RUBY_FORGE_PROJECT = 'pluginaweek'
 desc 'Default: run unit tests.'
 task :default => :test
 
-desc 'Test the acts_as_phoneable plugin.'
+desc 'Test the has_phone_numbers plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
 
-desc 'Generate documentation for the acts_as_phoneable plugin.'
+desc 'Generate documentation for the has_phone_numbers plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ActsAsPhoneable'
+  rdoc.title    = 'HasPhoneNumbers'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -35,7 +35,7 @@ spec = Gem::Specification.new do |s|
   
   s.files           = FileList['{app,db,lib,tasks,test}/**/*'].to_a + %w(init.rb MIT-LICENSE Rakefile README)
   s.require_path    = 'lib'
-  s.autorequire     = 'acts_as_phoneable'
+  s.autorequire     = 'has_phone_numbers'
   s.has_rdoc        = true
   s.test_files      = Dir['test/**/*_test.rb']
   

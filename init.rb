@@ -1,1 +1,1 @@
-require 'acts_as_phoneable'
+require 'has_phone_numbers'

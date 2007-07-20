@@ -2,28 +2,28 @@
 class PhoneNumber < ActiveRecord::Base
   belongs_to                :phoneable,
                               :polymorphic => true
-                              
+  
   validates_presence_of     :phoneable_id,
                             :phoneable_type,
                             :country_code,
-                            :area_code,
-                            :local_exchange
-                            
-  validates_numericality_of :country_code,
-                            :area_code,
-                            :local_exchange,
-                            :extension
-                            
-  validates_length_of       :country_code,
-                              :in => 1..3
-  validates_length_of       :area_code,
-                              :in => 2..4
-  validates_length_of       :local_exchange,
-                              :in => 6..8
-  validates_length_of       :extension,
-                              :maximum => 10
+                            :number
+  
+  with_options(:allow_nil => true) do |klass|
+    klass.validates_numericality_of :country_code,
+                                    :number,
+                                    :extension
+    klass.validates_length_of       :country_code,
+                                      :in => 1..3
+    klass.validates_length_of       :number,
+                                      :is => 10
+    klass.validates_length_of       :extension,
+                                      :maximum => 10
+  end
   
   def to_s #:nodoc
-    "#{country_code}- (#{area_code}) #{local_exchange}"
+    human_number = "#{country_code}- #{number}"
+    human_number << " ext. #{extension}" if extension
+    
+    human_number
   end
 end

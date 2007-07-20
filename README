@@ -1,12 +1,12 @@
-= acts_as_phoneable
+= has_phone_numbers
 
-acts_as_phoneable .
+has_phone_numbers .
 
 == Resources
 
 Wiki
 
-* http://wiki.pluginaweek.org/Acts_as_phoneable
+* http://wiki.pluginaweek.org/Has_phone_numbers
 
 Announcement
 
@@ -14,11 +14,11 @@ Announcement
 
 Source
 
-* http://svn.pluginaweek.org/trunk/plugins/active_record/acts/acts_as_phoneable
+* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_phone_numbers
 
 Development
 
-* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/acts/acts_as_phoneable
+* http://dev.pluginaweek.org/browser/trunk/plugins/active_record/has/has_phone_numbers
 
 == Description
 
