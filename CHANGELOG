@@ -1,2 +1,7 @@
 *SVN*
 
+*0.0.1* (August 21st, 2007)
+
+* Added documentation
+
+* Removed dependency on has_association_helper

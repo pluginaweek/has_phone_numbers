@@ -1,7 +1,7 @@
 # Represents a phone number
 class PhoneNumber < ActiveRecord::Base
-  belongs_to                :phoneable,
-                              :polymorphic => true
+  belongs_to  :phoneable,
+                :polymorphic => true
   
   validates_presence_of     :phoneable_id,
                             :phoneable_type,
