@@ -1,12 +1,12 @@
-# Represents a phone number
+# Represents a phone number (most likely in the United States)
 class PhoneNumber < ActiveRecord::Base
   belongs_to  :phoneable,
                 :polymorphic => true
   
-  validates_presence_of     :phoneable_id,
-                            :phoneable_type,
-                            :country_code,
-                            :number
+  validates_presence_of :phoneable_id,
+                        :phoneable_type,
+                        :country_code,
+                        :number
   
   with_options(:allow_nil => true) do |klass|
     klass.validates_numericality_of :country_code,

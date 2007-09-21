@@ -9,8 +9,8 @@ module PluginAWeek #:nodoc:
       
       module MacroMethods
         # Creates a new association for having a single phone number.  This
-        # takes the same parameters as ActiveRecord::Associations::ClassMethods#has_one.
-        # By default, the following associations are the same:
+        # takes the same parameters as +has_one+.  By default, the following
+        # associations are the same:
         # 
         #   class Person < ActiveRecord::Base
         #     has_phone_number
@@ -29,8 +29,8 @@ module PluginAWeek #:nodoc:
         end
         
         # Creates a new association for having a multiple phone numbers.  This
-        # takes the same parameters as ActiveRecord::Associations::ClassMethods#has_many.
-        # By default, the following associations are the same:
+        # takes the same parameters as +has_many+.  By default, the following
+        # associations are the same:
         # 
         #   class Person < ActiveRecord::Base
         #     has_phone_numbers

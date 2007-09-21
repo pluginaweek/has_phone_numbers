@@ -1,6 +1,6 @@
 = has_phone_numbers
 
-has_phone_numbers adds a base skeleton for handling phone numbers.
++has_phone_numbers+ adds a base skeleton for handling phone numbers.
 
 == Resources
 
@@ -14,7 +14,7 @@ Wiki
 
 Announcement
 
-* http://www.pluginaweek.org/
+* http://www.pluginaweek.org
 
 Source
 
@@ -31,9 +31,11 @@ standardized across multiple applications.  Phone numbers are minimialistic in
 terms of the type of data required and follows the standard U.S. format.
 Support for international formats may be added in the future.
 
+== Usage 
+
 === Running migrations
 
-To migrate the tables required for has_phone_numbers, you can either run the
+To migrate the tables required for this plugin, you can either run the
 migration from the command line like so:
 
   rake db:migrate:plugins PLUGIN=has_phone_numbers
@@ -45,11 +47,20 @@ application's migration path:
 
 == Testing
 
-The following plugins/gems must be installed before any tests can be run:
-* plugin_dependencies - http://wiki.pluginaweekk.org/Plugin_dependencies
-* loaded_plugins - http://wiki.pluginaweek.org/Loaded_plugins
-* appable_plugins - http://wiki.pluginaweek.org/Appable_plugins
+Before you can run any tests, the following gems must be installed:
+* plugin_test_helper[http://wiki.pluginaweek.org/Plugin_test_helper]
+* dry_validity_assertions[http://wiki.pluginaweek.org/Dry_validity_assertions]
 
 == Dependencies
 
-This plugin does not depend on the presence of any other plugin.
+This plugin is a plugin+.  That means that it contains a slice of an
+application, such as models and migrations.  To test or use a plugin+, you
+must have the following plugins/gems installed:
+* plugin_dependencies[http://wiki.pluginaweek.org/Plugin_dependencies]
+* loaded_plugins[http://wiki.pluginaweek.org/Loaded_plugins]
+* appable_plugins[http://wiki.pluginaweek.org/Appable_plugins]
+* plugin_migrations[http://wiki.pluginaweek.org/Plugin_migrations]
+
+Instead of installing each individual plugin+ feature, you can install them all
+at once using the plugins+[http://wiki.pluginaweek.org/Plugins_plus] meta package,
+which contains all additional features.
