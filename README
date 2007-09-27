@@ -4,25 +4,25 @@
 
 == Resources
 
-API
+Announcement
 
-* http://api.pluginaweek.org/has_phone_numbers
+* http://www.pluginaweek.org
 
 Wiki
 
 * http://wiki.pluginaweek.org/Has_phone_numbers
 
-Announcement
+API
 
-* http://www.pluginaweek.org
-
-Source
-
-* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_phone_numbers
+* http://api.pluginaweek.org/has_phone_numbers
 
 Development
 
 * http://dev.pluginaweek.org/browser/trunk/plugins/active_record/has/has_phone_numbers
+
+Source
+
+* http://svn.pluginaweek.org/trunk/plugins/active_record/has/has_phone_numbers
 
 == Description
 
