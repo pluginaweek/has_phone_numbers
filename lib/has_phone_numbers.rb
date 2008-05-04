@@ -1,69 +1,22 @@
 module PluginAWeek #:nodoc:
-  module Has #:nodoc:
-    # Adds base models, with minimal attribute definitions, for interacting with
-    # phone numbers.
-    module PhoneNumbers
-      def self.included(base) #:nodoc:
-        base.extend(MacroMethods)
+  # Adds a generic implementation for dealing with phone numbers
+  module HasPhoneNumbers
+    def self.included(base) #:nodoc:
+      base.class_eval do
+        extend PluginAWeek::HasPhoneNumbers::MacroMethods
       end
-      
-      module MacroMethods
-        # Creates a new association for having a single phone number.  This
-        # takes the same parameters as +has_one+.  By default, the following
-        # associations are the same:
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_phone_number
-        #   end
-        # 
-        # and
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_one :phone_number,
-        #               :class_name => 'PhoneNumber',
-        #               :as => :phoneable,
-        #               :dependent => :destroy
-        #   end
-        def has_phone_number(*args, &extension)
-          create_phone_number_association(:one, :phone_number, *args, &extension)
-        end
-        
-        # Creates a new association for having a multiple phone numbers.  This
-        # takes the same parameters as +has_many+.  By default, the following
-        # associations are the same:
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_phone_numbers
-        #   end
-        # 
-        # and
-        # 
-        #   class Person < ActiveRecord::Base
-        #     has_many  :phone_numbers,
-        #                 :class_name => 'PhoneNumber',
-        #                 :as => :phoneable,
-        #                 :dependent => :destroy
-        #   end
-        def has_phone_numbers(*args, &extension)
-          create_phone_number_association(:many, :phone_numbers, *args, &extension)
-        end
-        
-        private
-        def create_phone_number_association(cardinality, association_id, *args, &extension)
-          options = extract_options_from_args!(args)
-          options.symbolize_keys!.reverse_merge!(
-            :class_name => 'PhoneNumber',
-            :as => :phoneable,
-            :dependent => :destroy
-          )
-          
-          send("has_#{cardinality}", args.first || association_id, options, &extension)
-        end
+    end
+    
+    module MacroMethods
+      # Creates the following association:
+      # * +phone_number+ - All phone numbers associated with the current record.
+      def has_addresses
+        has_many  :phone_numbers
       end
     end
   end
 end
 
 ActiveRecord::Base.class_eval do
-  include PluginAWeek::Has::PhoneNumbers
+  include PluginAWeek::HasPhoneNumbers
 end

@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 require 'rake/contrib/sshpublisher'
 
 PKG_NAME           = 'has_phone_numbers'
-PKG_VERSION        = '0.0.2'
+PKG_VERSION        = '0.0.3'
 PKG_FILE_NAME      = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'pluginaweek'
 
@@ -31,7 +31,7 @@ spec = Gem::Specification.new do |s|
   s.name            = PKG_NAME
   s.version         = PKG_VERSION
   s.platform        = Gem::Platform::RUBY
-  s.summary         = 'Adds a base skeleton for handling phone numbers.'
+  s.summary         = 'Demonstrates a reference implementation for handling phone numbers.'
   
   s.files           = FileList['{app,db,lib,test}/**/*'].to_a + %w(CHANGELOG init.rb MIT-LICENSE Rakefile README)
   s.require_path    = 'lib'
@@ -39,7 +39,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc        = true
   s.test_files      = Dir['test/**/*_test.rb']
   
-  s.author          = 'Aaron Pfeifer, Neil Abraham'
+  s.author          = 'Aaron Pfeifer'
   s.email           = 'info@pluginaweek.org'
   s.homepage        = 'http://www.pluginaweek.org'
 end

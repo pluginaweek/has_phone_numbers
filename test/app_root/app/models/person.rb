@@ -1,7 +1,9 @@
 class Person < ActiveRecord::Base
-  has_phone_number  :cell_phone,
-                      :conditions => ['phone_numbers.kind = ?', 'cell']
-  has_phone_number  :work_phone,
-                      :conditions => ['phone_numbers.kind = ?', 'work']
-  has_phone_numbers :phone_numbers
+  has_one   :cell_phone,
+              :class_name => 'PhoneNumber',
+              :conditions => {:kind => 'cell'}
+  has_one   :work_phone,
+              :class_name => 'PhoneNumber',
+              :conditions => {:kind => 'work'}
+  has_many  :phone_numbers
 end
