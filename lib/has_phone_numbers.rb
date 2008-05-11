@@ -10,8 +10,9 @@ module PluginAWeek #:nodoc:
     module MacroMethods
       # Creates the following association:
       # * +phone_number+ - All phone numbers associated with the current record.
-      def has_addresses
-        has_many  :phone_numbers
+      def has_phone_numbers
+        has_many  :phone_numbers,
+                    :as => :phoneable
       end
     end
   end
