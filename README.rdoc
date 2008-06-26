@@ -4,21 +4,21 @@
 
 == Resources
 
-Wiki
-
-* http://wiki.pluginaweek.org/Has_phone_numbers
-
 API
 
 * http://api.pluginaweek.org/has_phone_numbers
 
+Bugs
+
+* http://pluginaweek.lighthouseapp.com/projects/13275-has_phone_numbers
+
 Development
 
-* http://dev.pluginaweek.org/browser/trunk/has_phone_numbers
+* http://github.com/pluginaweek/has_phone_numbers
 
 Source
 
-* http://svn.pluginaweek.org/trunk/has_phone_numbers
+* git://github.com/pluginaweek/has_phone_numbers.git
 
 == Description
 
@@ -44,7 +44,7 @@ modified for your own usage.
 == Testing
 
 Before you can run any tests, the following gem must be installed:
-* plugin_test_helper[http://wiki.pluginaweek.org/Plugin_test_helper]
+* plugin_test_helper[http://github.com/pluginaweek/plugin_test_helper]
 
 To run against a specific version of Rails:
 
@@ -53,4 +53,4 @@ To run against a specific version of Rails:
 == Dependencies
 
 * Rails 2.1 or later
-* plugins_plus[http://wiki.pluginaweek.org/Plugins_plus]
+* plugins_plus[http://github.com/pluginaweek/plugins_plus]
