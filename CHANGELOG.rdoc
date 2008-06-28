@@ -1,19 +1,18 @@
-*SVN*
+== master
 
-*0.0.4* (June 22nd, 2008)
+== 0.0.4 / 2008-06-22
 
 * Remove log files from gems
 
-*0.0.3* (May 5th, 2008)
+== 0.0.3 / 2008-05-05
 
 * Updated documentation
 
-*0.0.2* (September 26th, 2007)
+== 0.0.2 / 2007-09-26
 
 * Move test fixtures out of the test application root directory
 
-*0.0.1* (August 21st, 2007)
+== 0.0.1 / 2007-08-21
 
 * Added documentation
-
 * Removed dependency on has_association_helper
