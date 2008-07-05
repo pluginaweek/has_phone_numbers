@@ -133,8 +133,8 @@ class PhoneNumberAfterBeingCreatedTest < Test::Unit::TestCase
     assert_equal @person, @phone_number.phoneable
   end
   
-  def test_should_generate_stringified_version_of_phone_number
-    assert_equal '1- 1234567890', @phone_number.to_s
+  def test_should_have_a_display_value
+    assert_equal '1- 1234567890', @phone_number.display_value
   end
 end
 
@@ -143,7 +143,7 @@ class PhoneNumberWithExtensionTest < Test::Unit::TestCase
     @phone_number = create_phone_number(:country_code => '1', :number => '1234567890', :extension => '123')
   end
   
-  def test_should_generate_stringified_version_of_phone_number
-    assert_equal '1- 1234567890 ext. 123', @phone_number.to_s
+  def test_should_have_a_display_value
+    assert_equal '1- 1234567890 ext. 123', @phone_number.display_value
   end
 end

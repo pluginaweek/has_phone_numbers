@@ -1,5 +1,7 @@
 == master
 
+* Change PhoneNumber#to_s to PhoneNumber#display_value
+
 == 0.0.4 / 2008-06-22
 
 * Remove log files from gems
