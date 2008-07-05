@@ -39,7 +39,7 @@ modified for your own usage.
     :number => '1234567890',
     :extension => '123'
   )
-  phone_number.to_s # => 1- 1234567890 ext. 123
+  phone_number.display_value # => 1- 1234567890 ext. 123
 
 == Testing
 
