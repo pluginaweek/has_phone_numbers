@@ -1,5 +1,6 @@
 == master
 
+* Change how the base module is included to prevent namespacing conflicts
 * Change PhoneNumber#to_s to PhoneNumber#display_value
 
 == 0.0.4 / 2008-06-22
