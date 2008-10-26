@@ -113,6 +113,24 @@ class PhoneNumberTest < Test::Unit::TestCase
     assert !phone_number.valid?
     assert_equal 1, Array(phone_number.errors.on(:extension)).size
   end
+  
+  def test_should_protect_attributes_from_mass_assignment
+    phone_number = PhoneNumber.new(
+      :id => 1,
+      :phoneable_id => 1,
+      :phoneable_type => 'User',
+      :country_code => '123',
+      :number => '8675309',
+      :extension => '999'
+    )
+    
+    assert_nil phone_number.id
+    assert_equal 1, phone_number.phoneable_id
+    assert_equal 'User', phone_number.phoneable_type
+    assert_equal '123', phone_number.country_code
+    assert_equal '8675309', phone_number.number
+    assert_equal '999', phone_number.extension
+  end
 end
 
 class PhoneNumberAfterBeingCreatedTest < Test::Unit::TestCase
