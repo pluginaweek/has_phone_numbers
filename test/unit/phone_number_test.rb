@@ -33,33 +33,33 @@ class PhoneNumberTest < Test::Unit::TestCase
   end
   
   def test_should_require_a_phoneable_id
-    phone_number = new_phone_number(:phoneable_id => nil)
+    phone_number = new_phone_number(:phoneable => nil, :phoneable_id => nil)
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:phoneable_id)).size
+    assert phone_number.errors.invalid?(:phoneable_id)
   end
   
   def test_should_require_a_phoneable_type
-    phone_number = new_phone_number(:phoneable_type => nil)
+    phone_number = new_phone_number(:phoneable => nil, :phoneable_type => nil)
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:phoneable_type)).size
+    assert phone_number.errors.invalid?(:phoneable_type)
   end
   
   def test_should_require_a_country_code
     phone_number = new_phone_number(:country_code => nil)
     assert !phone_number.valid?
-    assert_equal 3, Array(phone_number.errors.on(:country_code)).size
+    assert phone_number.errors.invalid?(:country_code)
   end
   
   def test_should_require_country_code_be_a_number
     phone_number = new_phone_number(:country_code => 'a')
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:country_code)).size
+    assert phone_number.errors.invalid?(:country_code)
   end
   
   def test_should_require_country_codes_be_between_1_and_3_numbers
     phone_number = new_phone_number(:country_code => '')
     assert !phone_number.valid?
-    assert_equal 3, Array(phone_number.errors.on(:country_code)).size
+    assert phone_number.errors.invalid?(:country_code)
     
     phone_number.country_code += '1'
     assert phone_number.valid?
@@ -69,32 +69,32 @@ class PhoneNumberTest < Test::Unit::TestCase
     
     phone_number.country_code += '1'
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:country_code)).size
+    assert phone_number.errors.invalid?(:country_code)
   end
   
   def test_should_require_a_number
     phone_number = new_phone_number(:number => nil)
     assert !phone_number.valid?
-    assert_equal 3, Array(phone_number.errors.on(:number)).size
+    assert phone_number.errors.invalid?(:number)
   end
   
   def test_should_require_number_be_a_number
     phone_number = new_phone_number(:number => 'a' * 10)
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:number)).size
+    assert phone_number.errors.invalid?(:number)
   end
   
   def test_should_require_number_be_exactly_10_numbers
     phone_number = new_phone_number(:number => '1' * 9)
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:number)).size
+    assert phone_number.errors.invalid?(:number)
     
     phone_number.number += '1'
     assert phone_number.valid?
     
     phone_number.number += '1'
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:number)).size
+    assert phone_number.errors.invalid?(:number)
   end
   
   def test_should_not_require_an_extension
@@ -111,7 +111,7 @@ class PhoneNumberTest < Test::Unit::TestCase
     
     phone_number.extension += '1'
     assert !phone_number.valid?
-    assert_equal 1, Array(phone_number.errors.on(:extension)).size
+    assert phone_number.errors.invalid?(:extension)
   end
   
   def test_should_protect_attributes_from_mass_assignment
