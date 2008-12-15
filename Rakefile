@@ -5,7 +5,7 @@ require 'rake/contrib/sshpublisher'
 
 spec = Gem::Specification.new do |s|
   s.name              = 'has_phone_numbers'
-  s.version           = '0.0.5'
+  s.version           = '0.1.0'
   s.platform          = Gem::Platform::RUBY
   s.summary           = 'Demonstrates a reference implementation for handling phone numbers.'
   
