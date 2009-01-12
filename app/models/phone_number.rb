@@ -1,5 +1,6 @@
 # Represents a phone number split into multiple parts:
-# * +country_code+ - Uniquely identifiers the country to which the number belongs. This value is based on the E.164 standard (http://en.wikipedia.org/wiki/E.164)
+# * +country_code+ - Uniquely identifiers the country to which the number belongs.
+#   This value is based on the E.164 standard (http://en.wikipedia.org/wiki/E.164)
 # * +number+ - The subscriber number (10 digits in length)
 # * +extension+ - A number that can route to different phones at a location
 # 
