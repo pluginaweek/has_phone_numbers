@@ -50,26 +50,13 @@ class PhoneNumberTest < Test::Unit::TestCase
     assert phone_number.errors.invalid?(:country_code)
   end
   
-  def test_should_require_country_code_be_a_number
-    phone_number = new_phone_number(:country_code => 'a')
-    assert !phone_number.valid?
-    assert phone_number.errors.invalid?(:country_code)
-  end
-  
-  def test_should_require_country_codes_be_between_1_and_3_numbers
-    phone_number = new_phone_number(:country_code => '')
+  def test_should_require_a_known_country_code
+    phone_number = new_phone_number(:country_code => '2')
     assert !phone_number.valid?
     assert phone_number.errors.invalid?(:country_code)
     
-    phone_number.country_code += '1'
+    phone_number.country_code = '1'
     assert phone_number.valid?
-    
-    phone_number.country_code += '11'
-    assert phone_number.valid?
-    
-    phone_number.country_code += '1'
-    assert !phone_number.valid?
-    assert phone_number.errors.invalid?(:country_code)
   end
   
   def test_should_require_a_number
@@ -84,17 +71,33 @@ class PhoneNumberTest < Test::Unit::TestCase
     assert phone_number.errors.invalid?(:number)
   end
   
-  def test_should_require_number_be_exactly_10_numbers
-    phone_number = new_phone_number(:number => '1' * 9)
+  def test_should_require_number_be_exact_for_country_code_without_range
+    phone_number = new_phone_number(:country_code => '1', :number => '1' * 9)
     assert !phone_number.valid?
-    assert phone_number.errors.invalid?(:number)
+    assert_equal 'is the wrong length (should be 10 characters)', phone_number.errors.on(:number)
     
     phone_number.number += '1'
     assert phone_number.valid?
     
     phone_number.number += '1'
     assert !phone_number.valid?
-    assert phone_number.errors.invalid?(:number)
+    assert_equal 'is the wrong length (should be 10 characters)', phone_number.errors.on(:number)
+  end
+  
+  def test_should_require_number_be_within_range_for_country_code_with_range
+    phone_number = new_phone_number(:country_code => '32', :number => '1' * 7)
+    assert !phone_number.valid?
+    assert_equal 'is too short (minimum is 8 characters)', phone_number.errors.on(:number)
+    
+    phone_number.number += '1'
+    assert phone_number.valid?
+    
+    phone_number.number += '1'
+    assert phone_number.valid?
+    
+    phone_number.number += '1'
+    assert !phone_number.valid?
+    assert_equal 'is too long (maximum is 9 characters)', phone_number.errors.on(:number)
   end
   
   def test_should_not_require_an_extension
@@ -102,7 +105,7 @@ class PhoneNumberTest < Test::Unit::TestCase
     assert phone_number.valid?
   end
   
-  def test_should_require_extension_be_at_most_10_numbers
+  def test_should_require_extension_be_at_most_10_digits
     phone_number = new_phone_number(:extension => '1' * 9)
     assert phone_number.valid?
     

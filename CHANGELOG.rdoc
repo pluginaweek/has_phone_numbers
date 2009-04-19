@@ -1,5 +1,7 @@
 == master
 
+* Validate that the country code is known
+* Validate number lengths on a per-country code basis
 * Add the list of available country codes
 * Remove PhoneNumber#display_value in favor of using the Rails helper
 * Add dependency on Rails 2.3
