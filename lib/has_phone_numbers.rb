@@ -4,8 +4,7 @@ module HasPhoneNumbers
     # Creates the following association:
     # * +phone_number+ - All phone numbers associated with the current record.
     def has_phone_numbers
-      has_many  :phone_numbers,
-                  :as => :phoneable
+      has_many :phone_numbers, :as => :phoneable
     end
   end
 end
