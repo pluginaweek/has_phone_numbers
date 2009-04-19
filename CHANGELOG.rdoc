@@ -1,5 +1,8 @@
 == master
 
+* Add dependency on Rails 2.3
+* Remove dependency on plugins_plus
+
 == 0.1.0 / 2008-12-14
 
 * Remove the PluginAWeek namespace
