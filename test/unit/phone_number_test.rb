@@ -150,18 +150,4 @@ class PhoneNumberAfterBeingCreatedTest < Test::Unit::TestCase
   def test_should_have_a_phoneable_association
     assert_equal @person, @phone_number.phoneable
   end
-  
-  def test_should_have_a_display_value
-    assert_equal '1- 1234567890', @phone_number.display_value
-  end
-end
-
-class PhoneNumberWithExtensionTest < Test::Unit::TestCase
-  def setup
-    @phone_number = create_phone_number(:country_code => '1', :number => '1234567890', :extension => '123')
-  end
-  
-  def test_should_have_a_display_value
-    assert_equal '1- 1234567890 ext. 123', @phone_number.display_value
-  end
 end

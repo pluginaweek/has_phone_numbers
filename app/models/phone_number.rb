@@ -15,19 +15,4 @@ class PhoneNumber < ActiveRecord::Base
   validates_length_of :country_code, :in => 1..3
   validates_length_of :number, :is => 10
   validates_length_of :extension, :maximum => 10, :allow_nil => true
-  
-  # Generates a human-readable version of the phone number, based on all of the
-  # various parts of the number.
-  # 
-  # For example,
-  # 
-  #   phone = PhoneNumber.new(:country_code => '1', :number => '123-456-7890')
-  #   phone.display_value     # => "1- 123-456-7890"
-  #   phone.extension = "123"
-  #   phone.display_value     # => "1- 123-456-7890 ext. 123"
-  def display_value
-    human_number = "#{country_code}- #{number}"
-    human_number << " ext. #{extension}" if extension
-    human_number
-  end
 end

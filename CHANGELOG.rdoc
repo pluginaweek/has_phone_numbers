@@ -1,5 +1,6 @@
 == master
 
+* Remove PhoneNumber#display_value in favor of using the Rails helper
 * Add dependency on Rails 2.3
 * Remove dependency on plugins_plus
 
