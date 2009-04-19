@@ -23,23 +23,35 @@ Source
 == Description
 
 A phone number is a simple model whose data and functionality should be
-standardized across multiple applications.  Phone numbers are minimialistic in
-terms of the type of data required and follows the standard U.S. format.
-Support for international formats may be added in the future.
+standardized across multiple applications.  Phone numbers are minimalistic in
+terms of the type of data it represents.  Both U.S. and international formats
+are supported.
 
 == Usage 
 
-Note that this is a reference implementation and, most likely, should be
+Note that this is a reference implementation and, most likely, will be
 modified for your own usage.
 
 === Example
 
-  phone_number = Phone_number.new(
-    :country_code => '1',
-    :number => '1234567890',
-    :extension => '123'
-  )
-  phone_number.display_value # => 1- 1234567890 ext. 123
+Building with individual segments:
+
+  PhoneNumber.create(:phoneable => user, :country_code => '1', :number => '1234567890', :extension => '123')
+  # #<PhoneNumber id: 1, phoneable_id: 1, phoneable_type: "User", country_code: "1", number: "1234567890", extension: "123", created_at: "2009-01-01 00:00:00", updated_at: "2009-01-01 00:00:00">
+
+Parsing raw values:
+
+  PhoneNumber.new(:phoneable => user, :content => '1 1234567890 ext. 123')
+  # #<PhoneNumber id: 1, phoneable_id: 1, phoneable_type: "User", country_code: "1", number: "1234567890", extension: "123", created_at: "2009-01-01 00:00:00", updated_at: "2009-01-01 00:00:00">
+  
+  PhoneNumber.new(:phoneable => user, :content => '231 331 996 x4621')
+  # #<PhoneNumber id: 1, phoneable_id: 1, phoneable_type: "User", country_code: "231", number: "331996", extension: "4621", created_at: "2009-01-01 00:00:00", updated_at: "2009-01-01 00:00:00">
+  
+  PhoneNumber.new(:phoneable => user, :content => '+ 386 1 5853 449')
+  # #<PhoneNumber id: 1, phoneable_id: 1, phoneable_type: "User", country_code: "386", number: "15853449", extension: nil, created_at: "2009-01-01 00:00:00", updated_at: "2009-01-01 00:00:00">
+  
+  PhoneNumber.new(:phoneable => user, :content => '+39-02-4823001')
+  # #<PhoneNumber id: 1, phoneable_id: 1, phoneable_type: "User", country_code: "39", number: "024823001", extension: nil, created_at: "2009-01-01 00:00:00", updated_at: "2009-01-01 00:00:00">
 
 == Testing
 

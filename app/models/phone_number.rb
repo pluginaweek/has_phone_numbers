@@ -81,11 +81,11 @@ class PhoneNumber < ActiveRecord::Base
   
   # The raw, unparsed content containing the phone number.  This can be parsed
   # in various formats, such as:
-  # * 600 600 11 22
+  # * 599 600 11 22
   # * + 386 1 5853 449
-  # * +48 (22) 64 0001
+  # * +48 (22) 641 0001
   # * 36 1 267-4636
-  # * +39-02-48230001
+  # * +39-02-4823001
   # * 202 331 996 x4621
   # * 358 2 141 540 65 ext. 1423
   attr_accessor :content
