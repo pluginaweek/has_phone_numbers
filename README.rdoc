@@ -53,3 +53,7 @@ To run against a specific version of Rails:
 == Dependencies
 
 * Rails 2.3 or later
+
+== References
+
+* Casey West - {Parse-PhoneNumber}[http://search.cpan.org/~cwest/Parse-PhoneNumber-1.1]

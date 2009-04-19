@@ -1,5 +1,6 @@
 == master
 
+* Add the ability to parse raw values [Matt Lightner]
 * Validate that the country code is known
 * Validate number lengths on a per-country code basis
 * Add the list of available country codes

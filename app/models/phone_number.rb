@@ -51,6 +51,11 @@ class PhoneNumber < ActiveRecord::Base
   # The list of country calling codes as defined by ITU-T recommendation E.164
   COUNTRY_CODES = VALID_LENGTHS.keys
   
+  # Whether to always use the default country code configured for this model
+  # when parsing the raw content of a phone number
+  cattr_accessor :use_default_country_code_on_parse
+  @@use_default_country_code_on_parse = false
+  
   belongs_to :phoneable, :polymorphic => true
   
   validates_presence_of :phoneable_id, :phoneable_type, :country_code, :number
@@ -58,7 +63,6 @@ class PhoneNumber < ActiveRecord::Base
   validates_numericality_of :extension, :allow_nil => true
   validates_length_of :extension, :maximum => 10, :allow_nil => true
   validates_inclusion_of :country_code, :in => COUNTRY_CODES
-  
   validates_each :number do |phone_number, attr, value|
     country_code = phone_number.country_code
     
@@ -74,4 +78,54 @@ class PhoneNumber < ActiveRecord::Base
       end
     end
   end
+  
+  # The raw, unparsed content containing the phone number.  This can be parsed
+  # in various formats, such as:
+  # * 600 600 11 22
+  # * + 386 1 5853 449
+  # * +48 (22) 64 0001
+  # * 36 1 267-4636
+  # * +39-02-48230001
+  # * 202 331 996 x4621
+  # * 358 2 141 540 65 ext. 1423
+  attr_accessor :content
+  before_validation_on_create :parse_content, :if => :content
+  
+  private
+    # Parses the raw content of a phone number, extracting the following
+    # attributes:
+    # * country_code
+    # * number
+    # * extension
+    def parse_content
+      content = self.content.strip
+      
+      # Check for extension
+      if match = content.match(/\s*(?:(?:ext|ex|xt|x)[\s.:]*(\d+))$/i)
+        self.extension = match[1]
+        content.gsub!(match.to_s, '')
+      end
+ 
+      # Remove non-digits and leading 0
+      content.gsub!(/\D/, '')
+      content.gsub!(/^0+/, '')
+      
+      if use_default_country_code_on_parse
+        # Scrub pre-determined country code
+        content.gsub!(/^#{country_code}/, '')
+      else
+        # Try to figure out the country code.  It is not possible for one
+        # country code's number to overlap another.
+        (1..3).each do |length|
+          code = content[0, length]
+          if VALID_LENGTHS[code] # Fast lookup
+            self.country_code = code
+            content.gsub!(/^#{code}/, '')
+            break
+          end
+        end
+      end
+      
+      self.number = content
+    end
 end

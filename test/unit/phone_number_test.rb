@@ -154,3 +154,166 @@ class PhoneNumberAfterBeingCreatedTest < Test::Unit::TestCase
     assert_equal @person, @phone_number.phoneable
   end
 end
+
+class PhoneNumberParserTest < Test::Unit::TestCase
+  def setup
+    @person = create_person
+    @phone_number = new_phone_number(:phoneable => @person, :country_code => nil, :number => nil, :extension => nil)
+  end
+  
+  def test_should_parse_country_code_with_1_digit
+    @phone_number.content = '11234567890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_country_code_with_2_digits
+    @phone_number.content = '20123456789'
+    
+    assert @phone_number.valid?
+    assert_equal '20', @phone_number.country_code
+    assert_equal '123456789', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_country_code_with_3_digits
+    @phone_number.content = '21212345678'
+    
+    assert @phone_number.valid?
+    assert_equal '212', @phone_number.country_code
+    assert_equal '12345678', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_number_with_spaces
+    @phone_number.content = '1 123 456 7890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_number_with_dashes
+    @phone_number.content = '1-123-456-7890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_number_with_parentheses
+    @phone_number.content = '1- (123) 456-7890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_number_with_leading_zero
+    @phone_number.content = '011234567890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_number_with_multiple_leading_zeroes
+    @phone_number.content = '0011234567890'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+  
+  def test_should_parse_extension_with_leading_ext
+    @phone_number.content = '11234567890 ext. 123'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_equal '123', @phone_number.extension
+  end
+  
+  def test_should_parse_extension_with_leading_ex
+    @phone_number.content = '11234567890 ex:123'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_equal '123', @phone_number.extension
+  end
+  
+  def test_should_parse_extension_with_leading_xt
+    @phone_number.content = '11234567890 xt: 123'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_equal '123', @phone_number.extension
+  end
+  
+  def test_should_parse_extension_with_leading_x
+    @phone_number.content = '11234567890 x.  123'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_equal '123', @phone_number.extension
+  end
+  
+  def test_should_parse_extension_with_mixed_case
+    @phone_number.content = '11234567890 xT 123'
+    
+    assert @phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '1234567890', @phone_number.number
+    assert_equal '123', @phone_number.extension
+  end
+  
+  def test_should_not_be_valid_if_parse_fails
+    @phone_number.content = '1123456789'
+    
+    assert !@phone_number.valid?
+    assert_equal '1', @phone_number.country_code
+    assert_equal '123456789', @phone_number.number
+    assert_nil @phone_number.extension
+  end
+end
+
+class PhoneNumberParserWithDefaultCountryCodeTest < Test::Unit::TestCase
+  def setup
+    PhoneNumber.use_default_country_code_on_parse = true
+    
+    @person = create_person
+    @phone_number = new_phone_number(:phoneable => @person, :content => '7234567890 ex. 12')
+    @valid = @phone_number.valid?
+  end
+  
+  def test_should_be_valid
+    assert @valid
+  end
+  
+  def test_should_use_default_country_code
+    assert_equal '1', @phone_number.country_code
+  end
+  
+  def test_should_parse_number
+    assert_equal '7234567890', @phone_number.number
+  end
+  
+  def test_should_parse_extension
+    assert_equal '12', @phone_number.extension
+  end
+  
+  def teardown
+    PhoneNumber.use_default_country_code_on_parse = false
+  end
+end
