@@ -86,7 +86,7 @@ class PhoneNumber < ActiveRecord::Base
   # * +48 (22) 641 0001
   # * 36 1 267-4636
   # * +39-02-4823001
-  # * 202 331 996 x4621
+  # * 231 331 996 x4621
   # * 358 2 141 540 65 ext. 1423
   attr_accessor :content
   before_validation_on_create :parse_content, :if => :content
