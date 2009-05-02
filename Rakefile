@@ -7,7 +7,8 @@ spec = Gem::Specification.new do |s|
   s.name              = 'has_phone_numbers'
   s.version           = '0.2.0'
   s.platform          = Gem::Platform::RUBY
-  s.summary           = 'Demonstrates a reference implementation for handling phone numbers.'
+  s.summary           = 'Demonstrates a reference implementation for handling phone numbers in ActiveRecord'
+  s.description       = s.summary
   
   s.files             = FileList['{app,db,lib,test}/**/*'] + %w(CHANGELOG.rdoc init.rb LICENSE Rakefile README.rdoc) - FileList['test/app_root/{log,log/*,script,script/*}']
   s.require_path      = 'lib'
