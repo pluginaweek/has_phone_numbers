@@ -32,6 +32,17 @@ are supported.
 Note that this is a reference implementation and, most likely, will be
 modified for your own usage.
 
+=== Installation
+
++has_phone_numbers+ requires an additional database table to work.  You can
+generate a migration for this tables like so:
+
+  script/generate has_phone_numbers
+
+Then simply migrate your database:
+
+  rake db:migrate
+
 === Example
 
 Building with individual segments:
