@@ -6,7 +6,7 @@ require 'rake/gempackagetask'
 
 spec = Gem::Specification.new do |s|
   s.name              = 'has_phone_numbers'
-  s.version           = '0.2.0'
+  s.version           = '0.2.1'
   s.platform          = Gem::Platform::RUBY
   s.summary           = 'Demonstrates a reference implementation for handling phone numbers in ActiveRecord'
   s.description       = s.summary
