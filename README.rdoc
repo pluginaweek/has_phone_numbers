@@ -6,7 +6,7 @@
 
 API
 
-* http://api.pluginaweek.org/has_phone_numbers
+* http://rdoc.info/projects/pluginaweek/has_phone_numbers
 
 Bugs
 
