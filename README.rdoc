@@ -6,7 +6,7 @@
 
 API
 
-* http://rdoc.info/projects/pluginaweek/has_phone_numbers
+* http://rdoc.info/github/pluginaweek/has_phone_numbers/master/frames
 
 Bugs
 
