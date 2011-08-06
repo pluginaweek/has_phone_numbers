@@ -1,4 +1,4 @@
-= has_phone_numbers
+= has_phone_numbers http://travis-ci.org/pluginaweek/has_phone_numbers.png
 
 +has_phone_numbers+ demonstrates a reference implementation for handling phone numbers.
 
@@ -15,6 +15,10 @@ Bugs
 Development
 
 * http://github.com/pluginaweek/has_phone_numbers
+
+Testing
+
+* http://travis-ci.org/pluginaweek/has_phone_numbers
 
 Source
 
