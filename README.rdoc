@@ -10,7 +10,7 @@ API
 
 Bugs
 
-* http://pluginaweek.lighthouseapp.com/projects/13275-has_phone_numbers
+* http://github.com/pluginaweek/has_phone_numbers/issues
 
 Development
 
